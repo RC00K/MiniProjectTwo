@@ -7,13 +7,14 @@ import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import csv
 
 
 # Starbucks stock symbol
 ticker_names = "SBUX"
-# Collect data from last ten days
+# Collect data from last 22 years
 data = yf.download(tickers=ticker_names, period="22y")
+# Data set from Kaggle - Coffee prices last 22 years
+coffeePrice = pd.read_csv('data/coffee.csv', index_col='Date', parse_dates=True)
 
 
 # Save plot as png in new folder
@@ -34,11 +35,13 @@ def draw_charts(tickers):
     new_direct(chart_dir)
     for ticker in tickers:
         ticker_price = np.array(closing_prices())
-        plt.plot(ticker_price)
+        plt.plot(ticker_price, label='Starbucks', color='g')
+        plt.plot(coffeePrice.Close, label='Coffee', color='y')
         # Fancy chart output
-        plt.title(f"Coffee Prices VS Starbucks Stock Prices")
+        plt.title(f"Coffee VS Starbucks Closing Prices")
         plt.xlabel("22 Years")
         plt.ylabel("Price (USD)")
+        plt.legend()
         # Save plot as png in new folder
         plt.savefig(os.path.join(chart_dir, f"CoffeeComparison.png"))
         plt.close()
