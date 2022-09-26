@@ -14,7 +14,7 @@ ticker_names = "SBUX"
 # Collect data from last 22 years
 data = yf.download(tickers=ticker_names, period="22y")
 # Data set from Kaggle - Coffee prices last 22 years
-coffeePrice = pd.read_csv('data/coffee.csv', index_col='Date', parse_dates=True)
+coffeePrice = pd.read_csv('data/coffee.csv')
 
 
 # Save plot as png in new folder
