@@ -35,6 +35,7 @@ def draw_charts(tickers):
     new_direct(chart_dir)
     for ticker in tickers:
         ticker_price = np.array(closing_prices())
+        # Data from yfinance and kaggle
         plt.plot(ticker_price, label='Starbucks', color='g')
         plt.plot(coffeePrice.Close, label='Coffee', color='y')
         # Fancy chart output
